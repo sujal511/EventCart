@@ -149,7 +149,7 @@ app.register_blueprint(users_bp, url_prefix='/api/users')
 
 @app.route('/')
 def index():
-    return {"message": "Welcome to ShiftHub API"}
+    return {"message": "Welcome to EventCart API"}
 
 if __name__ == '__main__':
     with app.app_context():
