@@ -26,7 +26,6 @@ import NotFoundPage from './pages/NotFoundPage';
 import ErrorPage from './pages/ErrorPage';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
-import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminUsers from './pages/AdminUsers';
 import AdminOrders from './pages/AdminOrders';
@@ -146,7 +145,6 @@ const AppContent = () => {
           } />
           
           {/* Admin Routes */}
-          <Route path="/admin" element={<RouteWithErrorHandling element={<AdminLogin />} />} />
           <Route path="/admin/dashboard" element={
             <RouteWithErrorHandling element={
               <ProtectedRoute adminOnly={true}>

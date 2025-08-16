@@ -98,13 +98,13 @@ const AdminEvents = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isAuthenticated, loading: authLoading } = useAuth();
+  const { user, isAuthenticated, loading: authLoading, logout: authLogout } = useAuth();
 
   const categories = ['Music', 'Sports', 'Technology', 'Art', 'Food', 'Business', 'Education', 'Health'];
 
   useEffect(() => {
     if (!authLoading && (!isAuthenticated || !user?.is_admin)) {
-      navigate('/admin');
+      navigate('/login');
       return;
     }
 
@@ -173,9 +173,8 @@ const AdminEvents = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/admin');
+    authLogout(); // This clears user state and localStorage
+    navigate('/'); // Redirect to landing page after logout
   };
 
   const handleViewEvent = (event) => {

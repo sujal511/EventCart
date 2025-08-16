@@ -53,11 +53,11 @@ const AdminAnalytics = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isAuthenticated, loading: authLoading } = useAuth();
+  const { user, isAuthenticated, loading: authLoading, logout: authLogout } = useAuth();
 
   useEffect(() => {
     if (!authLoading && (!isAuthenticated || !user?.is_admin)) {
-      navigate('/admin');
+      navigate('/login');
       return;
     }
 
@@ -90,7 +90,7 @@ const AdminAnalytics = () => {
     } catch (error) {
       console.error('Error fetching analytics:', error);
       if (error.response?.status === 401) {
-        navigate('/admin');
+        navigate('/login');
       }
     } finally {
       setLoading(false);
@@ -100,9 +100,8 @@ const AdminAnalytics = () => {
 
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/admin');
+    authLogout(); // This clears user state and localStorage
+    navigate('/'); // Redirect to landing page after logout
   };
 
   const sidebarItems = [

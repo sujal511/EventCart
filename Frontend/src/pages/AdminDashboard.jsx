@@ -56,7 +56,7 @@ const AdminDashboard = () => {
     // If authentication check is complete and user is not authenticated, redirect to login
     if (!authLoading && !isAuthenticated) {
       console.log('User not authenticated, redirecting to login');
-      navigate('/admin');
+      navigate('/login');
       return;
     }
 
@@ -83,7 +83,7 @@ const AdminDashboard = () => {
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
       if (error.response?.status === 401) {
-        navigate('/admin');
+        navigate('/login');
       }
     } finally {
       setLoading(false);
@@ -92,10 +92,10 @@ const AdminDashboard = () => {
 
   const { logout } = useAuth();
 
-const handleLogout = () => {
-  logout(); // This clears user state and localStorage
-  navigate('/login'); // Redirect to login page
-};
+  const handleLogout = () => {
+    logout(); // This clears user state and localStorage
+    navigate('/'); // Redirect to landing page after logout
+  };
 
   // Show loading state while checking authentication
   if (authLoading || loading) {
