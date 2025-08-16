@@ -44,7 +44,7 @@ EventCart is a modern, high-efficiency platform designed to transform the way pe
 - Create `backend/.env` (example):
 
   ```env
-  DATABASE_URL=postgresql://postgres:1234@localhost:5432/shifthub
+  DATABASE_URL=postgresql://username:password@localhost:5432/eventcartdb
   JWT_SECRET_KEY=change_me_in_prod
   FLASK_APP=app.py
   FLASK_ENV=development
