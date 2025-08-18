@@ -51,11 +51,11 @@ const AdminUsers = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isAuthenticated, loading: authLoading } = useAuth();
+  const { user, isAuthenticated, loading: authLoading, logout: authLogout } = useAuth();
 
   useEffect(() => {
     if (!authLoading && (!isAuthenticated || !user?.is_admin)) {
-      navigate('/admin');
+      navigate('/login');
       return;
     }
 
@@ -74,7 +74,7 @@ const AdminUsers = () => {
     } catch (error) {
       console.error('Error fetching users:', error);
       if (error.response?.status === 401) {
-        navigate('/admin');
+        navigate('/login');
       }
     } finally {
       setLoading(false);
@@ -82,9 +82,8 @@ const AdminUsers = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/admin');
+    authLogout(); // This clears user state and localStorage
+    navigate('/'); // Redirect to landing page after logout
   };
 
   const handleViewUser = (userData) => {

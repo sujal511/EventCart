@@ -38,9 +38,9 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
 
   // Check if user is authenticated
   if (!isAuthenticated || !user) {
-    console.log("ProtectedRoute: Not authenticated, redirecting to login");
+    console.log("ProtectedRoute: Not authenticated, redirecting to /login");
     return <Navigate 
-      to="/login" 
+      to="/login"
       state={{ 
         from: location.pathname, 
         message: 'Please log in to access this page.' 

@@ -135,7 +135,7 @@ api.interceptors.response.use(
         }
       } catch (refreshError) {
         console.error('Token refresh failed:', refreshError);
-        // Clear auth state and redirect to login
+        // Clear auth state and redirect to the appropriate login
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         isRefreshing = false;

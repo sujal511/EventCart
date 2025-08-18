@@ -60,11 +60,11 @@ const AdminSettings = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isAuthenticated, loading: authLoading } = useAuth();
+  const { user, isAuthenticated, loading: authLoading, logout: authLogout } = useAuth();
 
   useEffect(() => {
     if (!authLoading && (!isAuthenticated || !user?.is_admin)) {
-      navigate('/admin');
+      navigate('/login');
       return;
     }
   }, [navigate, isAuthenticated, authLoading, user]);
@@ -100,9 +100,8 @@ const AdminSettings = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/admin');
+    authLogout(); // This clears user state and localStorage
+    navigate('/'); // Redirect to landing page after logout
   };
 
   const sidebarItems = [
